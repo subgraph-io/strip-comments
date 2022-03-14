@@ -1,4 +1,4 @@
-import { Options } from '../';
+import { Options } from '../index';
 import { Block } from './Node';
 
 /**
