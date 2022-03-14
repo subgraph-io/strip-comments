@@ -3,6 +3,8 @@
 // Definitions by: Piotr Błażejewicz <https://github.com/peterblazejewicz>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
+declare module '@subgraph-io/strip-comments';
+
 import _parse from './lib/parse';
 /**
  * Strip all code comments from the given `input`, including protected
@@ -88,5 +90,3 @@ declare namespace strip {
         language?: string | undefined;
     }
 }
-
-export = strip;
