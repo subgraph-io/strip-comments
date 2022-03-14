@@ -1,12 +1,15 @@
 {
-  "name": "strip-comments",
+  "name": "@subgraph-io/strip-comments",
   "description": "Strip line and/or block comments from a string. Blazing fast, and works with JavaScript, Sass, CSS, Less.js, and a number of other languages.",
   "version": "2.0.1",
-  "homepage": "https://github.com/jonschlinkert/strip-comments",
+  "homepage": "https://github.com/subgraph-io/strip-comments",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
-  "repository": "jonschlinkert/strip-comments",
+  "maintainers": [
+    "subgraph-io https://githhub.com/subgraph-io"
+  ],
+  "repository": "@subgraph-io/strip-comments",
   "bugs": {
-    "url": "https://github.com/jonschlinkert/strip-comments/issues"
+    "url": "https://github.com/@subgraph-io/strip-comments/issues"
   },
   "license": "MIT",
   "files": [
@@ -14,16 +17,18 @@
     "lib"
   ],
   "main": "index.js",
+  "type": "module",
   "engines": {
-    "node": ">=10"
+    "node": ">=16.13"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "mocha --require esm",
     "cover": "nyc --reporter=text --reporter=html mocha"
   },
   "devDependencies": {
+    "esm": "^3.2.25",
     "gulp-format-md": "^2.0.0",
-    "mocha": "^6.2.2",
+    "mocha": "^9.2.2",
     "nyc": "^14.1.1"
   },
   "keywords": [

@@ -6,8 +6,8 @@
 
 'use strict';
 
-const compile = require('./lib/compile');
-const parse = require('./lib/parse');
+import compile from './lib/compile.js';
+import parse from'./lib/parse.js';
 
 /**
  * Strip all code comments from the given `input`, including protected
@@ -30,7 +30,7 @@ const parse = require('./lib/parse');
  * @api public
  */
 
-const strip = module.exports = (input, options) => {
+const strip = (input, options) => {
   const opts = { ...options, block: true, line: true };
   return compile(parse(input, opts), opts);
 };
@@ -114,3 +114,5 @@ strip.first = (input, options) => {
  */
 
 strip.parse = parse;
+
+export default strip;

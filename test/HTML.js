@@ -7,13 +7,14 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-const strip = require('../index');
+import fs from 'fs';
+import path from 'path';
+import { URL } from 'url';
+import assert from 'assert';
+import strip from '../index.js';
 
-const fixture = path.join.bind(path, __dirname, 'fixtures/html');
-const expected = path.join.bind(path, __dirname, 'expected/html');
+const fixture = path.join.bind(path, new URL('.', import.meta.url).pathname, 'fixtures/html');
+const expected = path.join.bind(path, new URL('.', import.meta.url).pathname, 'expected/html');
 const read = src => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');
 
 describe('HTML comments', () => {

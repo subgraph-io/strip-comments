@@ -7,12 +7,13 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-const strip = require('../index');
+import fs from 'fs';
+import path from 'path';
+import { URL } from 'url';
+import assert from 'assert';
+import strip from '../index.js';
 
-const tests = path.join.bind(path, __dirname);
+const tests = path.join.bind(path, new URL('.', import.meta.url).pathname);
 const read = src => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');;
 
 describe('JavaScript comments', () => {
@@ -77,7 +78,7 @@ describe('JavaScript comments', () => {
   });
 
   it('should not mangle json', () => {
-    const expected = read(path.join(__dirname, '..', 'package.json'));
+    const expected = read(path.join(new URL('.', import.meta.url).pathname, '..', 'package.json'));
     const before = JSON.parse(expected);
     const res = strip(expected);
     const after = JSON.parse(res);

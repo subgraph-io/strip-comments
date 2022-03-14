@@ -1,0 +1,30 @@
+steps:
+  - name: node:16.13.0
+    entrypoint: bash
+    args: ['-c', "echo \"@subgraph-io:registry=https://npm.pkg.github.com/\n//npm.pkg.github.com/:_authToken=$$GITHUB_ACCESS_TOKEN\n\" > /workspace/.npmrc"]
+    secretEnv: ['GITHUB_ACCESS_TOKEN']
+
+  - name: node:16.13.0
+    entrypoint: bash
+    args: ['-c', "npm install"]
+    secretEnv: ['GITHUB_ACCESS_TOKEN']
+
+  - name: node:16.13.0
+    entrypoint: bash
+    args: ['-c', 'npm test']
+    secretEnv: ['GITHUB_ACCESS_TOKEN']
+
+  - name: gcr.io/subgraph-io/npm-package-versioning-cloud-builder:latest
+    entrypoint: '/bin/sh'
+    args: ['-c', '/cloud-builder -o subgraph-io -r strip-comments -g $$GITHUB_ACCESS_TOKEN -f /workspace']
+    secretEnv: ['GITHUB_ACCESS_TOKEN']
+
+  - name: node:16.13.0
+    entrypoint: bash
+    args: ['-c', "cd /workspace/build && npm publish"]
+    secretEnv: ['GITHUB_ACCESS_TOKEN']
+
+availableSecrets:
+  secretManager:
+  - versionName: projects/subgraph-io/secrets/SUBGRAPH_IO_GITHUB_PERSONAL_ACCESS_TOKEN/versions/2
+    env: 'GITHUB_ACCESS_TOKEN'

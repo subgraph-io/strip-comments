@@ -7,13 +7,14 @@
 
 'use strict';
 
-const fs = require('fs');
-const path = require('path');
-const assert = require('assert');
-const strip = require('../index');
+import fs from 'fs';
+import { URL } from 'url';
+import path from 'path';
+import assert from 'assert';
+import strip from '../index.js'
 
-const fixture = path.join.bind(path, __dirname, 'fixtures/other');
-const expected = path.join.bind(path, __dirname, 'expected/other');
+const fixture = path.join.bind(path, new URL('.', import.meta.url).pathname, 'fixtures/other');
+const expected = path.join.bind(path, new URL('.', import.meta.url).pathname, 'expected/other');
 const read = src => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');;
 
 describe('other languages', () => {
