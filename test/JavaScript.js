@@ -11,7 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import { URL } from 'url';
 import assert from 'assert';
-import strip from '../index.js';
+import strip from '../build/index.js';
 
 const tests = path.join.bind(path, new URL('.', import.meta.url).pathname);
 const read = src => fs.readFileSync(src, 'utf-8').replace(/\r*\n/g, '\n');;

@@ -11,7 +11,7 @@ import fs from 'fs';
 import path from 'path';
 import { URL } from 'url';
 import assert from 'assert';
-import strip from '../index.js';
+import strip from '../build/index.js';
 
 const fixture = path.join.bind(path, new URL('.', import.meta.url).pathname, 'fixtures/html');
 const expected = path.join.bind(path, new URL('.', import.meta.url).pathname, 'expected/html');
