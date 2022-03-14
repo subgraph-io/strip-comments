@@ -17,6 +17,7 @@
     "lib"
   ],
   "main": "index.js",
+  "types": "index.d.ts",
   "type": "module",
   "engines": {
     "node": ">=16.13"
