@@ -1,9 +1,11 @@
 // Type definitions for strip-comments 2.0
 // Project: https://github.com/subgraph-io/strip-comments
 
-declare module '@subgraph-io/strip-comments' {
+import { Block } from "./lib/Node";
 
-    declare interface parse {
+declare namespace strip {
+
+    export default interface strip {
         /**
          * Strip all code comments from the given `input`, including protected
          * comments that start with `!`, unless disabled by setting `options.keepProtected`
@@ -58,9 +60,24 @@ declare module '@subgraph-io/strip-comments' {
          * @param [`options`] pass `opts.keepProtected: true` to keep comments with `!`
          */
         first(input: string, options?: Options): string;
-    }
 
-    export default parse;
+        /**
+         * Parses a string and returns a basic CST (Concrete Syntax Tree).
+         *
+         * ```js
+         * const strip = require('..');
+         * const str = strip.block('const foo = "bar";// this is a comment\n /* me too *\/');
+         * console.log(str);
+         * // => 'const foo = "bar";// this is a comment'
+         * ```
+         * @name  .block
+         * @param  {String} `input` string from which to strip comments
+         * @param  {Object} `options` pass `opts.keepProtected: true` to keep ignored comments (e.g. `/*!`)
+         * @return {String} modified string
+         * @api public
+         */
+        parse(input: string, options?: Options): Block;
+    }
 
     export interface Options {
         /**
