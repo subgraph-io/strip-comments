@@ -3,7 +3,7 @@
 
 declare module '@subgraph-io/strip-comments' {
 
-    export default interface parse {
+    declare interface parse {
         /**
          * Strip all code comments from the given `input`, including protected
          * comments that start with `!`, unless disabled by setting `options.keepProtected`
@@ -59,6 +59,8 @@ declare module '@subgraph-io/strip-comments' {
          */
         first(input: string, options?: Options): string;
     }
+
+    export default parse;
 
     export interface Options {
         /**
