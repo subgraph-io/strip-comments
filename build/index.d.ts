@@ -103,3 +103,5 @@ declare namespace strip {
     }
 
 }
+
+export default strip;
