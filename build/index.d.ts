@@ -1,8 +1,6 @@
 // Type definitions for strip-comments 2.0
 // Project: https://github.com/subgraph-io/strip-comments
 
-import { Block } from "./lib/Node";
-
 /**
  * Strip all code comments from the given `input`, including protected
  * comments that start with `!`, unless disabled by setting `options.keepProtected`
@@ -73,7 +71,6 @@ declare namespace strip {
      * @param  {String} `input` string from which to strip comments
      * @param  {Object} `options` pass `opts.keepProtected: true` to keep ignored comments (e.g. `/*!`)
      * @return {String} modified string
-     * @api public
      */
     export function parse(input: string, options?: Options): Block;
 
@@ -102,6 +99,21 @@ declare namespace strip {
         language?: string | undefined;
     }
 
+    export class Node {
+        type: string;
+        match: boolean;
+        newline: string;
+        value: string;
+        nodes: [];
+        readonly protected: boolean;
+        constructor(node: Node);
+    }
+
+    export class Block extends Node {
+        readonly protected: boolean;
+        constructor(node: Node);
+        push(node: Node): void;
+    }
 }
 
 export default strip;
