@@ -3,22 +3,22 @@
 
 import { Block } from "./lib/Node";
 
-declare namespace strip {
+/**
+ * Strip all code comments from the given `input`, including protected
+ * comments that start with `!`, unless disabled by setting `options.keepProtected`
+ * to true.
+ *
+ * ```js
+ * const str = strip('const foo = "bar";// this is a comment\n /* me too *\/');
+ * console.log(str);
+ * // => 'const foo = "bar";'
+ * ```
+ * @param string - string from which to strip comments
+ * @param [options] - passed to [extract-comments][extract-comments]
+ */
+declare function strip(input: string, options?: strip.Options): string;
 
-    /**
-     * Strip all code comments from the given `input`, including protected
-     * comments that start with `!`, unless disabled by setting `options.keepProtected`
-     * to true.
-     *
-     * ```js
-     * const str = strip('const foo = "bar";// this is a comment\n /* me too *\/');
-     * console.log(str);
-     * // => 'const foo = "bar";'
-     * ```
-     * @param string - string from which to strip comments
-     * @param [options] - passed to [extract-comments][extract-comments]
-     */
-    export default function strip(input: string, options?: strip.Options): string;
+declare namespace strip {
 
     /**
      * Strip only block comments.
